@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import NavBar from "./componets/navBar";
+import TodoList from "./componets/todolist";
+import TodoContext from "./contexts/TodoContext";
+import AddTodo from '../src/componets/AddTodo'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TodoContext>
+    <Router>
+        <NavBar />
+        <br />
+        <div className="uk-container">
+            <Switch>
+                <Route path="/create">
+                    <AddTodo></AddTodo>
+                </Route>
+                <Route path="/">
+                    <h4>Minha lista de tarefas</h4>
+                    <TodoList></TodoList>
+                </Route>
+            </Switch>
+        </div>
+    </Router>
+</TodoContext>
   );
-}
+};
 
 export default App;
